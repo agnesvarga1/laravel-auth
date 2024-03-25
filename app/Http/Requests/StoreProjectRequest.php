@@ -22,7 +22,10 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'project_name'=>['required', 'unique:project','max:150'],
+            'description'=>['nullable'],
+            'image' => ["extensions:jpg, jpeg, png, bmp,  webp" || 'url:http,https'],
+            'github_repo'=>['required','url:http,https']
         ];
     }
 }
