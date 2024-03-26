@@ -32,10 +32,14 @@ class ProjectController extends Controller
     {
        // dd($request);
        $validData = $request->validated();
-        //dd($validData);
-      $newProject = Project::create($validData);
 
-       return redirect()->route('dashboard.projects.index');
+       $slug = Project::generateSlug($request->project_name);
+
+       $validData['slug'] = $slug;
+       // dd($validData);
+     $newProject = Project::create($validData);
+
+      return redirect()->route('dashboard.projects.index');
     }
 
     /**
@@ -49,9 +53,9 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Project $project, $slug)
     {
-        //
+     //
     }
 
     /**
@@ -65,8 +69,9 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Project $project ,string $slug )
     {
-        //
+       $project->delete();
+       return redirect()->route('dashboard.projects.index');
     }
 }

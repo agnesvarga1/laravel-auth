@@ -24,8 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'project_name'=>['required' , 'unique:projects'  ,'max:150'],
             'description'=> 'nullable | max:1500',
-            'image' => 'nullable | url:http,https',
-            'github_repo'=>'required | url:http,https'
+            'website'=>'required | url:http,https'
         ];
     }
 }

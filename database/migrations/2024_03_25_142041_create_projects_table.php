@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("project_name", 150)->unique();
             $table->string("description")->nullable();
-            $table->string("image");
-            $table->string("github_repo");
+            $table->string('slug');
+            $table->string("website");
             $table->timestamps();
         });
     }

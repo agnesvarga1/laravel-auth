@@ -16,14 +16,10 @@
                 @error('description')
                <div class="alert alert-danger">{{ $message }}</div>
                @enderror
-              <label for="image">Image Path/URL</label>
-              <input id="image" type="text" class="form-control mb-3 @error("image") is-invalid  @enderror" name="image" value={{old('project_name')}}>
-              @error('image')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
-              <label for="github_repo">Github Repository URL</label>
-              <input required id="github_repo" type="text" class="form-control mb-3 @error("github_repo") is-invalid  @enderror" name="github_repo" value={{old('project_name')}} >
-              @error('github_repo')
+
+              <label for="website">Website URL</label>
+              <input required id="website" type="text" class="form-control mb-3 @error("website") is-invalid  @enderror" name="website" value={{old('website')}} >
+              @error('website')
               <div class="alert alert-danger">{{ $message }}</div>
               @enderror
               <button type="submit" class="btn bg-success text-light">Save</button>

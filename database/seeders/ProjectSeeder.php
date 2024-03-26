@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Project;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 class ProjectSeeder extends Seeder
 {
@@ -19,8 +20,8 @@ class ProjectSeeder extends Seeder
             $project = new Project();
             $project->project_name = $faker->words(3, true);
             $project-> description = $faker->text(200);
-            $project-> image =  $faker->imageUrl(640, 480, 'animals', true);
-            $project-> github_repo = $faker->url();
+            $project-> slug = Str::slug($project->project_name,'-');
+            $project-> website = $faker->url();
             $project->save();
         }
     }
