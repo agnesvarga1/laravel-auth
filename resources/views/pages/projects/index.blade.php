@@ -23,9 +23,11 @@
                 <td>{{$item->description}}</td>
                 <td>{{$item->slug}}</td>
                 <td>{{$item->website}}</td>
-                <td><button class="btn btn-primary">Edit</button></td>
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                   Delete</button></td>
+                <td><a href={{route('dashboard.projects.edit',$item->slug)}} class="btn btn-primary m-1">Edit</a>
+                    <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Delete</button>
+                </td>
+
               </tr>
             @endforeach
 
@@ -48,7 +50,7 @@
           <form action="{{route('dashboard.projects.destroy',$item->slug)}}" method="POST">
             @csrf
             @method('Delete')
-            <button type="button" class="btn btn-danger">Delete Project</button>
+            <button type="submit" class="btn btn-danger">Delete Project</button>
           </form>
 
         </div>

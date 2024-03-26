@@ -53,9 +53,9 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project, $slug)
+    public function edit(Project $project)
     {
-     //
+     return view('pages.projects.edit',compact('project'));
     }
 
     /**
@@ -63,13 +63,15 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $validData = $request->validated();
+        $project = $project->update($validData);
+        return redirect()->route('dashboard.projects.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project ,string $slug )
+    public function destroy(Project $project)
     {
        $project->delete();
        return redirect()->route('dashboard.projects.index');
