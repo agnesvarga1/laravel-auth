@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="text-center">New project</h2>
 <div class="container">
-    <form action="{{route("dashboard.projects.store")}}" method="POST">
+    <form action="{{route("dashboard.projects.store")}}" method="POST" enctype="multipart/form-data">
         @csrf
 
               <label for="project_name">Project Name</label>
@@ -17,6 +17,10 @@
                <div class="alert alert-danger">{{ $message }}</div>
                @enderror
 
+               <div class="mb-3">
+                <label for="formFile" class="form-label">Add an image</label>
+                <input class="form-control" type="file" id="formFile" name="image">
+              </div>
               <label for="website">Website URL</label>
               <input required id="website" type="text" class="form-control mb-3 @error("website") is-invalid  @enderror" name="website" value={{old('website')}} >
               @error('website')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -36,6 +37,12 @@ class ProjectController extends Controller
        $slug = Project::generateSlug($request->project_name);
 
        $validData['slug'] = $slug;
+      if($request->hasFile('image')){
+        $path = Storage::disk('public')->put('project_images',$request->image);
+
+        $validData['image']= $path;
+
+      }
        // dd($validData);
      $newProject = Project::create($validData);
 
@@ -47,7 +54,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('pages.projects.show',compact('project'));
     }
 
     /**

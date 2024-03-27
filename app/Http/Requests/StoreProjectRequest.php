@@ -24,6 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'project_name'=>['required' , 'unique:projects'  ,'max:150'],
             'description'=> 'nullable | max:1500',
+            'imahe'=> 'nullable|image',
             'website'=>'required | url:http,https'
         ];
     }
