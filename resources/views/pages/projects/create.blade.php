@@ -19,7 +19,11 @@
 
                <div class="mb-3">
                 <label for="formFile" class="form-label">Add an image</label>
-                <input class="form-control" type="file" id="formFile" name="image">
+                <input value="{{old('image')}}" class="form-control  @error("image") is-invalid  @enderror" type="file" id="formFile" name="image">
+                @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
               </div>
               <label for="website">Website URL</label>
               <input required id="website" type="text" class="form-control mb-3 @error("website") is-invalid  @enderror" name="website" value={{old('website')}} >
