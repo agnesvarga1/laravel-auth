@@ -70,7 +70,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-
+        dd($reguest);
         $validData = $request->validated();
 
         $slug = Project::generateSlug($request->project_name);
@@ -80,11 +80,12 @@ class ProjectController extends Controller
             if($project->image){
                 Storage::delete($project->image);
               }
+              $path = Storage::disk('public')->put('project_images',$request->image);
+
+              $validData['image']= $path;
         }
 
-          $path = Storage::disk('public')->put('project_images',$request->image);
 
-          $validData['image']= $path;
 
         $project = $project->update($validData);
         return redirect()->route('dashboard.projects.index');
